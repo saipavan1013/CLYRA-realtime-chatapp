@@ -1,0 +1,136 @@
+// Static FAQ and Help content — used by HelpPage Help Center
+// Can be migrated to Firestore help_articles collection in future.
+
+export const APP_VERSION = import.meta.env.VITE_APP_VERSION || '2.24.2.75';
+export const BUILD_NUMBER = import.meta.env.VITE_BUILD_NUMBER || '20260220';
+
+export const HELP_CATEGORIES = ['Account', 'Security', 'Chats', 'Privacy', 'Media'];
+
+export const FAQ_DATA = [
+    // Account
+    {
+        id: 'a1', category: 'Account',
+        title: 'How do I change my profile name?',
+        content: 'Go to Settings → Profile → tap the pencil icon next to Your Name. Enter a new name and press Save. Changes sync across all your devices.',
+    },
+    {
+        id: 'a2', category: 'Account',
+        title: 'How do I change my email address?',
+        content: 'Go to Settings → Account → Email address. You will need to confirm your password, then a verification link will be sent to the new email. Your email updates after you click the link.',
+    },
+    {
+        id: 'a3', category: 'Account',
+        title: 'How do I delete my account?',
+        content: 'Go to Settings → Account → Delete account. You must type "DELETE" to confirm and enter your password. This action is irreversible and permanently removes your data.',
+    },
+    // Security
+    {
+        id: 's1', category: 'Security',
+        title: 'What are security notifications?',
+        content: 'Security notifications alert you whenever a significant change happens on your account — such as a new login, password change, or email update. Enable them in Settings → Account → Security notifications.',
+    },
+    {
+        id: 's2', category: 'Security',
+        title: 'How do I enable two-step verification?',
+        content: 'Two-step verification adds an extra layer of protection. Go to Settings → Account → Two-step verification. This feature requires additional backend configuration for TOTP setup.',
+    },
+    {
+        id: 's3', category: 'Security',
+        title: 'How do I see my active sessions?',
+        content: 'Active session management is available in Settings → Linked Devices. You can view and terminate any session from another device instantly.',
+    },
+    // Chats
+    {
+        id: 'c1', category: 'Chats',
+        title: 'How do I send a message?',
+        content: 'Select a contact from the sidebar, type your message in the input box, and press Enter (if "Enter is send" is on) or click the Send button.',
+    },
+    {
+        id: 'c2', category: 'Chats',
+        title: 'Can I unsend a message?',
+        content: 'Yes. Long-press or right-click any message you sent → Delete for everyone. This removes the message for all participants. This is only available within 7 minutes of sending.',
+    },
+    {
+        id: 'c3', category: 'Chats',
+        title: 'How do I change my chat wallpaper?',
+        content: 'Go to Settings → Chats → Wallpaper. Choose from preset gradients or upload a custom image. The wallpaper applies to your chat background immediately.',
+    },
+    {
+        id: 'c4', category: 'Chats',
+        title: 'How do I export my chat history?',
+        content: 'Go to Settings → Chats → Chat history → Export Chat History. A JSON file containing your messages and metadata will download immediately.',
+    },
+    // Privacy
+    {
+        id: 'p1', category: 'Privacy',
+        title: 'Who can see my online status?',
+        content: 'Your online status is visible to your contacts by default. Privacy controls for online status visibility are available in Settings → Privacy (coming soon).',
+    },
+    {
+        id: 'p2', category: 'Privacy',
+        title: 'How is my data stored?',
+        content: 'Your messages, profile, and settings are stored in Firebase Firestore with security rules ensuring only you and your recipients can access your data. Passwords are managed by Firebase Authentication.',
+    },
+    // Media
+    {
+        id: 'm1', category: 'Media',
+        title: 'How do I send images or files?',
+        content: 'Click the attachment icon (paperclip) in the chat input area. Select an image or document from your device. The file uploads and sends automatically.',
+    },
+    {
+        id: 'm2', category: 'Media',
+        title: 'What file types are supported?',
+        content: 'Images (JPG, PNG, GIF, WebP), documents (PDF, DOCX, TXT), and audio files (MP3, WAV) are supported. Maximum file size is 25 MB.',
+    },
+    {
+        id: 'm3', category: 'Media',
+        title: 'Can I send voice messages?',
+        content: 'Yes. Click the microphone icon in the chat input. Grant microphone permission when prompted. Press stop when done — the voice message uploads and sends automatically.',
+    },
+];
+
+export const TERMS_CONTENT = `**Terms of Service** — Version 1.2 (Effective 1 Jan 2025)
+
+By using CLYRA, you agree to these terms. You must be 13 years or older to use this service.
+
+**1. Your Account** — You are responsible for maintaining the security of your account and password. CLYRA is not liable for any loss resulting from unauthorized access.
+
+**2. Acceptable Use** — You may not use CLYRA to send spam, transmit illegal content, harass others, or attempt to compromise our systems.
+
+**3. Content** — You retain ownership of content you share. You grant CLYRA a limited licence to display it to intended recipients only.
+
+**4. Termination** — We reserve the right to suspend or terminate accounts that violate these terms.
+
+**5. Changes** — We may update these terms. Continued use after changes constitutes acceptance.`;
+
+export const PRIVACY_CONTENT = `**Privacy Policy** — Version 1.2 (Effective 1 Jan 2025)
+
+**Data We Collect:** Profile information (name, email, photo), messages you send, usage metadata, and device information.
+
+**How We Use It:** To operate and improve the service, authenticate your identity, and provide support.
+
+**Data Sharing:** We do not sell your data. Messages are accessible only to you and your recipients. We may share anonymized analytics with partners.
+
+**Data Retention:** Your data is retained while your account is active. After deletion, data is removed within 30 days from backups.
+
+**Your Rights:** You may request a copy of your data, correct inaccuracies, or delete your account at any time from Settings → Account.
+
+**Contact:** For privacy concerns, use Settings → Help → Contact Us.`;
+
+export const REPORT_TYPES = [
+    'Spam or unwanted messages',
+    'Harassment or bullying',
+    'Inappropriate or offensive content',
+    'Fake account or impersonation',
+    'Violence or threats',
+    'Other',
+];
+
+export const CONTACT_SUBJECTS = [
+    'Account issue',
+    'Bug report',
+    'Feature request',
+    'Privacy concern',
+    'Billing',
+    'Other',
+];
