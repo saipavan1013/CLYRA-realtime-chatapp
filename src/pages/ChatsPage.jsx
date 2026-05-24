@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../auth/AuthContext';
 import { useChatSettingsContext } from '../context/ChatSettingsContext';
-import { collection, query, where, getDocs, writeBatch, doc } from 'firebase/firestore';
+import { collection, collectionGroup, query, where, getDocs, writeBatch, doc } from 'firebase/firestore';
 import { db } from '../firebase/firebase';
 import AccountModal from '../components/AccountModal';
 
@@ -267,7 +267,7 @@ function ChatHistoryModal({ onClose, uid: uidProp, settings, updateSetting }) {
         setLoading(true);
         setError('');
         try {
-            const q = query(collection(db, 'messages'), where('senderId', '==', uid));
+            const q = query(collectionGroup(db, 'messages'), where('senderId', '==', uid));
             const snap = await getDocs(q);
 
             if (snap.empty) {
@@ -298,7 +298,7 @@ function ChatHistoryModal({ onClose, uid: uidProp, settings, updateSetting }) {
     const handleExport = async () => {
         setLoading(true); setError('');
         try {
-            const q = query(collection(db, 'messages'), where('senderId', '==', uid));
+            const q = query(collectionGroup(db, 'messages'), where('senderId', '==', uid));
             const snap = await getDocs(q);
             const messages = snap.docs.map(d => ({ id: d.id, ...d.data() }));
             const blob = new Blob([JSON.stringify({ exportedAt: new Date().toISOString(), messages }, null, 2)], { type: 'application/json' });

@@ -6,7 +6,7 @@ import {
 } from 'firebase/auth';
 import {
   doc, setDoc, getDoc, deleteDoc,
-  collection, query, where, getDocs, writeBatch, addDoc, serverTimestamp
+  collection, collectionGroup, query, where, getDocs, writeBatch, addDoc, serverTimestamp
 } from 'firebase/firestore';
 import { auth, db } from '../firebase/firebase';
 
@@ -173,7 +173,7 @@ export function AuthProvider({ children }) {
     const settingsDoc = await getDoc(doc(db, 'user_settings', uid));
 
     // Fetch messages where user is sender
-    const msgsQuery = query(collection(db, 'messages'), where('senderId', '==', uid));
+    const msgsQuery = query(collectionGroup(db, 'messages'), where('senderId', '==', uid));
     const msgsSnapshot = await getDocs(msgsQuery);
     const messages = msgsSnapshot.docs.map(d => ({ id: d.id, ...d.data() }));
 
