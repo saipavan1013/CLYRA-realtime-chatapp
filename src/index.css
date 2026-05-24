@@ -2173,3 +2173,22 @@ textarea.profile-input {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* Premium Circular Spinner Loader */
+.circular-spinner {
+  width: 42px;
+  height: 42px;
+  border: 3.5px solid var(--border, rgba(128, 128, 128, 0.15));
+  border-top: 3.5px solid var(--accent, #3b82f6);
+  border-radius: 50%;
+  animation: spin-loader 0.85s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes spin-loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

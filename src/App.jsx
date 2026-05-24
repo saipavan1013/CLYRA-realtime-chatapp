@@ -5,7 +5,7 @@ import { NotificationProvider } from './context/NotificationContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { ChatSettingsProvider } from './context/ChatSettingsContext';
 import ToastContainer from './components/ToastContainer';
-import BouncingDots from './components/BouncingDots';
+import Spinner from './components/Spinner';
 import { useAuth } from './auth/AuthContext';
 
 // Route-based code splitting using React.lazy()
@@ -20,7 +20,7 @@ const HelpPage = lazy(() => import('./pages/HelpPage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
-// Centered loading screen using standard brand bouncing dots
+// Centered loading screen using premium circular spinner loader
 const LoadingFallback = () => (
   <div style={{
     display: 'flex',
@@ -31,7 +31,7 @@ const LoadingFallback = () => (
     backgroundColor: 'var(--bg-primary)',
     color: 'var(--text-primary)'
   }}>
-    <BouncingDots />
+    <Spinner />
   </div>
 );
 
