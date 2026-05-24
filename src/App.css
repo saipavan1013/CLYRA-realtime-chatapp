@@ -533,22 +533,6 @@ body {
   html {
     font-size: 15px;
   }
-
-  .app {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    min-width: 0;
-    max-height: 40vh;
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .main {
-    min-height: 60vh;
-  }
 }
 
 @media (max-width: 480px) {

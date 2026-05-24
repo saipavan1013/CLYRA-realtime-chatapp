@@ -720,3 +720,46 @@
     align-items: center;
     gap: 8px;
 }
+
+@media (max-width: 480px) {
+    .message-input-container {
+        padding: 6px;
+    }
+
+    .message-input-form {
+        padding: 4px 8px;
+        gap: 4px;
+        border-radius: 20px;
+    }
+
+    .message-input__field {
+        font-size: 0.9rem !important;
+        padding: 8px 6px !important;
+    }
+
+    .input-actions-left {
+        gap: 2px !important;
+        display: flex;
+        align-items: center;
+    }
+
+    .action-btn {
+        width: 32px !important;
+        height: 32px !important;
+        padding: 4px !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .action-btn svg {
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    .message-input__btn {
+        padding: 6px 12px !important;
+        font-size: 0.85rem !important;
+        border-radius: 16px !important;
+    }
+}

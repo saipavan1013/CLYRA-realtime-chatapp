@@ -1,20 +1,10 @@
-import { useState, useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import ProfileDropdown from './ProfileDropdown';
 import NotificationBell from './NotificationBell';
 import Logo from './Logo';
 
-function Navbar({ user, onLogout, onSearch, onSelectUser }) {
+function Navbar({ user, onLogout, onSelectUser }) {
     const { theme, toggleTheme } = useTheme();
-    const [searchValue, setSearchValue] = useState('');
-
-    // Debounced search
-    useEffect(() => {
-        const handler = setTimeout(() => {
-            if (onSearch) onSearch(searchValue);
-        }, 500);
-        return () => clearTimeout(handler);
-    }, [searchValue, onSearch]);
 
     return (
         <nav className="navbar">
@@ -22,22 +12,6 @@ function Navbar({ user, onLogout, onSearch, onSelectUser }) {
             <div className="navbar__left">
                 <div className="navbar__logo">
                     <Logo size={64} className="navbar__logo-icon" />
-                </div>
-            </div>
-
-            {/* Center Section - Search */}
-            <div className="navbar__center">
-                <div className="navbar__search-wrapper">
-                    <svg className="navbar__search-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                        <path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z" />
-                    </svg>
-                    <input
-                        type="text"
-                        className="navbar__search-input"
-                        placeholder="Search users or messages..."
-                        value={searchValue}
-                        onChange={(e) => setSearchValue(e.target.value)}
-                    />
                 </div>
             </div>
 
