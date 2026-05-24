@@ -12,26 +12,35 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-/**
- * The Firebase App instance.
- * @type {import('firebase/app').FirebaseApp}
- */
-const app = initializeApp(firebaseConfig);
+let app = null;
+let auth = null;
+let db = null;
+let storage = null;
 
-/**
- * The Firebase Auth instance.
- * @type {import('firebase/auth').Auth}
- */
-export const auth = getAuth(app);
+const requiredKeys = [
+  'VITE_FIREBASE_API_KEY',
+  'VITE_FIREBASE_AUTH_DOMAIN',
+  'VITE_FIREBASE_PROJECT_ID',
+];
 
-/**
- * The Firestore Database instance.
- * @type {import('firebase/firestore').Firestore}
- */
-export const db = getFirestore(app);
+const missingKeys = requiredKeys.filter((key) => !import.meta.env[key]);
 
-/**
- * The Firebase Storage instance.
- * @type {import('firebase/storage').FirebaseStorage}
- */
-export const storage = getStorage(app);
+if (missingKeys.length > 0) {
+  const errorMsg = `Missing critical environment variables: ${missingKeys.join(', ')}. Please configure your .env file correctly.`;
+  console.error('[Firebase Init Error]', errorMsg);
+  window.__firebaseConfigError = errorMsg;
+} else {
+  try {
+    app = initializeApp(firebaseConfig);
+    auth = getAuth(app);
+    db = getFirestore(app);
+    storage = getStorage(app);
+  } catch (error) {
+    const initErrorMsg = `Firebase failed to initialize: ${error.message || error}`;
+    console.error('[Firebase Init Exception]', error);
+    window.__firebaseConfigError = initErrorMsg;
+  }
+}
+
+export { auth, db, storage };
+

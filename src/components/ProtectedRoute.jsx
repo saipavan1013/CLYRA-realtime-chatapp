@@ -1,5 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
+import BouncingDots from './BouncingDots';
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -8,7 +9,9 @@ const ProtectedRoute = ({ children }) => {
   if (loading) {
     return (
       <main className="auth-page">
-        <div className="auth-loading">Loading...</div>
+        <div className="auth-loading" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <BouncingDots />
+        </div>
       </main>
     );
   }
@@ -21,3 +24,4 @@ const ProtectedRoute = ({ children }) => {
 };
 
 export default ProtectedRoute;
+

@@ -385,7 +385,7 @@ function Message({
                 {edited && type === 'text' && <span className="edited-label"> (edited)</span>}
               </time>
               {isMine && (
-                <span className={`status-icon ${seen ? 'seen' : ''}`}>
+                <span className={`status-icon ${seen ? 'seen' : delivered ? 'delivered' : 'sent'}`}>
                   {seen || delivered ? '✓✓' : '✓'}
                 </span>
               )}

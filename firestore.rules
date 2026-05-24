@@ -1,16 +1,59 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /chats/{chatId}/messages/{messageId} {
-      allow read, create: if request.auth != null;
-    }
-    match /chats/{chatId}/typing/{userId} {
+    
+    // 1. User Profiles Collection
+    match /users/{userId} {
       allow read: if request.auth != null;
       allow write: if request.auth != null && request.auth.uid == userId;
     }
+
+    // 2. User Settings Collection
+    match /user_settings/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // 3. Conversations & Messages & Typing Collections
+    match /conversations/{conversationId} {
+      // Allow read and write for conversation document if user is one of the participants
+      allow read, write: if request.auth != null && (
+        resource == null || 
+        request.auth.uid in resource.data.participants || 
+        request.auth.uid in request.resource.data.participants
+      );
+      
+      // Messages subcollection under a specific conversation
+      match /messages/{messageId} {
+        allow read, write: if request.auth != null;
+      }
+    }
+
+    // 4. CollectionGroup rules for querying all messages (e.g. search, clear, export)
+    match /{path=**}/messages/{messageId} {
+      allow read: if request.auth != null && resource.data.senderId == request.auth.uid;
+    }
+
+    // 5. User Presence Collection
     match /presence/{userId} {
       allow read: if request.auth != null;
       allow write: if request.auth != null && request.auth.uid == userId;
     }
+
+    // 6. Support Tickets Collection
+    match /support_tickets/{ticketId} {
+      allow create: if request.auth != null;
+      allow read, update, delete: if request.auth != null && resource.data.userId == request.auth.uid;
+    }
+
+    // 7. Report Collection
+    match /reports/{reportId} {
+      allow create: if request.auth != null;
+    }
+
+    // 8. Security Logs Collection
+    match /security_logs/{logId} {
+      allow create: if request.auth != null && request.resource.data.uid == request.auth.uid;
+    }
   }
 }
+
