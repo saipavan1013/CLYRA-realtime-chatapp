@@ -84,6 +84,99 @@ function AboutPage() {
                     </div>
                 </div>
 
+                {/* Latest Release Section */}
+                <div className="settings-group" style={{ padding: '20px' }}>
+                    <h3 style={{
+                        fontSize: '1rem',
+                        fontWeight: '600',
+                        marginBottom: '12px',
+                        color: 'var(--accent)'
+                    }}>Latest Release</h3>
+                    <div style={{
+                        background: 'var(--bg-secondary, rgba(0,0,0,0.03))',
+                        border: '1px solid var(--border)',
+                        borderRadius: '8px',
+                        padding: '16px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '8px'
+                    }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <span style={{ fontWeight: '700', color: 'var(--text-primary)', fontSize: '0.9rem' }}>v1.0.0 (Stable Production)</span>
+                            <span style={{
+                                padding: '3px 8px',
+                                borderRadius: '12px',
+                                background: 'var(--accent)',
+                                color: '#fff',
+                                fontSize: '0.7rem',
+                                fontWeight: '600'
+                            }}>Latest</span>
+                        </div>
+                        <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', margin: '4px 0', lineHeight: '1.4' }}>
+                            Official production launch. Featuring robust Firestore security rules, client-side error boundaries, online presence signals, and real-time typing state listeners.
+                        </p>
+                        <a 
+                            href="https://github.com/saipavan1013/CLYRA-realtime-chatapp/releases/tag/v1.0.0" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            style={{
+                                color: 'var(--accent)',
+                                textDecoration: 'none',
+                                fontSize: '0.8rem',
+                                fontWeight: '600',
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '4px',
+                                marginTop: '4px'
+                            }}
+                        >
+                            View Release Details ↗
+                        </a>
+                    </div>
+                </div>
+
+                {/* Developer Support Ticket Section */}
+                <div className="settings-group" style={{ padding: '20px' }}>
+                    <h3 style={{
+                        fontSize: '1rem',
+                        fontWeight: '600',
+                        marginBottom: '8px',
+                        color: 'var(--text-primary)'
+                    }}>Need Support?</h3>
+                    <p style={{
+                        fontSize: '0.8rem',
+                        color: 'var(--text-muted)',
+                        marginBottom: '14px',
+                        lineHeight: '1.4'
+                    }}>
+                        Encountered a bug or have a suggestion? Open a secure real-time support ticket directly with our developers.
+                    </p>
+                    <button
+                        onClick={() => navigate('/settings/help')}
+                        style={{
+                            width: '100%',
+                            padding: '10px 16px',
+                            borderRadius: '8px',
+                            background: 'var(--accent)',
+                            color: '#fff',
+                            border: 'none',
+                            fontWeight: '600',
+                            fontSize: '0.85rem',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            gap: '8px',
+                            boxShadow: '0 2px 6px rgba(0,0,0,0.08)',
+                            transition: 'opacity 0.2s'
+                        }}
+                        onMouseOver={(e) => e.currentTarget.style.opacity = '0.9'}
+                        onMouseOut={(e) => e.currentTarget.style.opacity = '1'}
+                    >
+                        🎫 Open Support Ticket
+                    </button>
+                </div>
+
                 {/* App Info Footer */}
                 <div style={{
                     marginTop: '20px',
