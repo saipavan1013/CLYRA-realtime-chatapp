@@ -29,6 +29,7 @@ export function useUsers(currentUserId) {
                 const userList = snapshot.docs
                     .map((doc) => ({
                         id: doc.id,
+                        uid: doc.id,
                         ...doc.data(),
                     }))
                     .filter((user) => user.uid !== currentUserId);
