@@ -96,7 +96,7 @@ function AboutPage() {
                 }}>
                     <span>Version {APP_VERSION}</span>
                     <span>Build {BUILD_NUMBER}</span>
-                    <span style={{ marginTop: '8px' }}>&copy; 2025 CLYRA Inc.</span>
+                    <span style={{ marginTop: '8px' }}>&copy; {new Date().getFullYear()} CLYRA Inc.</span>
                 </div>
             </div>
         </div>

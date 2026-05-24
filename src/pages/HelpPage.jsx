@@ -98,7 +98,7 @@ function HelpPage() {
                 {/* App version footer */}
                 <div style={{ padding: '20px', textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
                     <p>CLYRA version {APP_VERSION}</p>
-                    <p>Build {BUILD_NUMBER} &copy; 2025 CLYRA Inc.</p>
+                    <p>Build {BUILD_NUMBER} &copy; {new Date().getFullYear()} CLYRA Inc.</p>
                 </div>
             </div>
 
