@@ -40,8 +40,8 @@ export function useAuthForm(options = {}) {
     }
 
     if (!email.trim()) {
-      newErrors.email = DEFAULT_ERRORS.email;
-    } else if (!validateEmail(email)) {
+      newErrors.email = requireConfirm ? DEFAULT_ERRORS.email : 'Username or Email is required';
+    } else if (requireConfirm && !validateEmail(email)) {
       newErrors.email = DEFAULT_ERRORS.emailInvalid;
     }
 

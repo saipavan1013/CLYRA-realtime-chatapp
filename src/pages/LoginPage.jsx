@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc, collection, query, where, getDocs } from 'firebase/firestore';
 import { auth, db } from '../firebase/firebase';
 import { getAuthErrorMessage } from '../auth/authErrors';
 import { useAuthForm } from '../hooks/useAuthForm';
@@ -18,7 +18,23 @@ function LoginPage() {
 
     form.setLoading(true);
     try {
-      const { user } = await signInWithEmailAndPassword(auth, form.email, form.password);
+      let loginEmail = form.email.trim();
+
+      // Support logging in via Username: if input doesn't contain '@', it's a username!
+      if (!loginEmail.includes('@')) {
+        const usersRef = collection(db, 'users');
+        const q = query(usersRef, where('username', '==', loginEmail));
+        const querySnapshot = await getDocs(q);
+
+        if (querySnapshot.empty) {
+          throw { code: 'auth/user-not-found', message: 'No account found with this username.' };
+        }
+
+        const matchedUser = querySnapshot.docs[0].data();
+        loginEmail = matchedUser.email;
+      }
+
+      const { user } = await signInWithEmailAndPassword(auth, loginEmail, form.password);
 
       // Update isOnline status only (merge: true prevents creating new document)
       const userRef = doc(db, 'users', user.uid);
@@ -28,7 +44,7 @@ function LoginPage() {
 
       navigate('/chat', { replace: true });
     } catch (err) {
-      form.setSubmitError(getAuthErrorMessage(err.code) || 'Login failed');
+      form.setSubmitError(getAuthErrorMessage(err.code) || err.message || 'Login failed');
     } finally {
       form.setLoading(false);
     }
@@ -51,22 +67,13 @@ function LoginPage() {
         footerLinkLabel="Register"
       >
         <AuthFormCard.Field
-          id="login-username"
-          type="text"
-          value={form.username}
-          onChange={(e) => form.setUsername(e.target.value)}
-          placeholder="Username"
-          error={form.errors.username}
-          autoComplete="username"
-        />
-        <AuthFormCard.Field
           id="login-email"
-          type="email"
+          type="text"
           value={form.email}
           onChange={(e) => form.setEmail(e.target.value)}
-          placeholder="Email"
+          placeholder="Username or Email"
           error={form.errors.email}
-          autoComplete="email"
+          autoComplete="username"
         />
         <AuthFormCard.Field
           id="login-password"
@@ -83,3 +90,4 @@ function LoginPage() {
 }
 
 export default LoginPage;
+
