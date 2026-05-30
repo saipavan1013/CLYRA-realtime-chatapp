@@ -332,8 +332,15 @@ function MessageInput({
             type="submit"
             disabled={(!text.trim() && !isRecording) || disabled || isUploading}
             className="message-input__btn"
+            title="Send Message"
           >
-            {isUploading ? '...' : 'Send'}
+            {isUploading ? (
+              '...'
+            ) : (
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+              </svg>
+            )}
           </button>
         </div>
       </form>

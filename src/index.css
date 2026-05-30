@@ -1309,8 +1309,10 @@ button {
 .message-input__btn {
   background: #3b82f6;
   color: #fff;
-  padding: 0 24px;
-  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
   font-weight: 700;
   font-size: 0.9rem;
   box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.3);
@@ -1318,7 +1320,6 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
 }
