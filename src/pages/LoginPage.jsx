@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc, collection, query, where, getDocs } from 'firebase/firestore';
 import { auth, db } from '../firebase/firebase';
@@ -84,6 +84,11 @@ function LoginPage() {
           error={form.errors.password}
           autoComplete="current-password"
         />
+        <div className="login-forgot-link-container">
+          <Link to="/forgot-password" id="login-forgot-password-link" className="login-forgot-link">
+            Forgot password?
+          </Link>
+        </div>
       </AuthFormCard>
     </div>
   );
