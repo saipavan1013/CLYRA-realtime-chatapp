@@ -31,7 +31,11 @@ function ForgotPasswordPage() {
 
     setLoading(true);
     try {
-      await sendPasswordResetEmail(auth, trimmedEmail);
+      const actionCodeSettings = {
+        url: `${window.location.origin}/reset-password`,
+        handleCodeInApp: true,
+      };
+      await sendPasswordResetEmail(auth, trimmedEmail, actionCodeSettings);
       setSuccessMessage('We sent a password reset link to your email. Please check your inbox.');
       setEmail('');
     } catch (err) {
